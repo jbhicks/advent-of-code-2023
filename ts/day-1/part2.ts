@@ -1,8 +1,8 @@
 import { findNumBookends, getFileData } from "../lib/common-functions";
 
 const exampleData = ['eightwothree', '4nineeightseven2', 'two1nine', 'abcone2threexyz', 'xtwone3four', 'zoneight234', '7pqrstsixteen'];
-// const data = getFileData('data');
-const data = exampleData;
+let data = getFileData('data');
+data = exampleData;
 
 let answer = 0;
 
