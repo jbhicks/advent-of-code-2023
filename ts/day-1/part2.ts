@@ -8,43 +8,35 @@ let answer = 0;
 
 for (let item of data) {
   console.log(item);
-  item = findFirstAndLastNumbers(item);
+  item = replaceWordsWithNumbers(item);
   console.log(item);
   answer += parseInt(item);
   console.log('----------');
-  // break;
 }
 
-console.log(answer);
+console.log(`Answer: ${answer}`);
 
-function findFirstAndLastNumbers(item: string): string {
-  const matches = item.match(/(zero|one|two|three|four|five|six|seven|eight|nine|\d)/gi);
-  if (matches) {
-    return replaceWordsWithNumbers(matches[0] + matches[matches.length - 1]);
-  }
-  return '';
-}
 function replaceWordsWithNumbers(item: string): string {
-  const numberMap: { [key: string]: string } = {
-    'zero': '0',
-    'one': '1',
-    'two': '2',
-    'three': '3',
-    'four': '4',
-    'five': '5',
-    'six': '6',
-    'seven': '7',
-    'eight': '8',
-    'nine': '9'
-  };
+  // create array of all matches in item - 0-9 or one,two,three,four,five,six,seven,eight,nine,zero
+  let regExp = /(?=(zero|one|two|three|four|five|six|seven|eight|nine|\d))/g;
+  let arr = [...item.matchAll(regExp)].map(match => {
+    let value = match[1];
+    return isNaN(Number(value)) ? getNumFromWord(value) : value;
+  });
+  return arr[0] + arr[arr.length - 1];
+}
 
-  let replaced = item;
-
-  // replace each spelled out number with its numerical counterpart
-  for (let word in numberMap) {
-    const regex = new RegExp(word, 'gi');
-    replaced = replaced.replace(regex, numberMap[word]);
-  }
-
-  return replaced;
+function getNumFromWord(word: string): string {
+  //convert word string to integer string
+  if (word === 'zero') return '0';
+  if (word === 'one') return '1';
+  if (word === 'two') return '2';
+  if (word === 'three') return '3';
+  if (word === 'four') return '4';
+  if (word === 'five') return '5';
+  if (word === 'six') return '6';
+  if (word === 'seven') return '7';
+  if (word === 'eight') return '8';
+  if (word === 'nine') return '9';
+  return '';
 }
