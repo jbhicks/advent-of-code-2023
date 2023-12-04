@@ -2,16 +2,13 @@ import { findNumBookends, getFileData } from "../lib/common-functions";
 
 const exampleData = ['eightwothree', '4nineeightseven2', 'two1nine', 'abcone2threexyz', 'xtwone3four', 'zoneight234', '7pqrstsixteen'];
 let data = getFileData('data');
-data = exampleData;
+// data = exampleData;
 
 let answer = 0;
 
 for (let item of data) {
-  console.log(item);
   item = replaceWordsWithNumbers(item);
-  console.log(item);
   answer += parseInt(item);
-  console.log('----------');
 }
 
 console.log(`Answer: ${answer}`);
