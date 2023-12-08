@@ -18,3 +18,8 @@ export function getNumFromString(input: string): number {
     if (stripped.length === 2) return parseInt(stripped.join().replace(',', ''));
     else return parseInt(stripped[0] + stripped[stripped.length - 1]);
 }
+
+export function isDigit(char: string): boolean {
+
+    return (/\d/.test(char));
+}
